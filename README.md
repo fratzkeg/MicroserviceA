@@ -20,3 +20,7 @@ This service tallies non-zero expense categories from your budget JSON.
    ctx = zmq.Context()
    sock = ctx.socket(zmq.REQ)
    sock.connect("tcp://<HOST>:5555")
+
+## 🖼 UML Sequence Diagram
+
+![Sequence Diagram](UML_Diagram.png)
