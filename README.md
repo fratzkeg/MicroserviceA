@@ -1,6 +1,6 @@
 # MicroserviceA
 
-This service tallies non-zero expense categories from your budget JSON.
+This microservice accepts a JSON-encoded budget, tallies all non-zero expense categories, and returns a JSON map of category → total.
 
 ---
 
@@ -12,14 +12,23 @@ This service tallies non-zero expense categories from your budget JSON.
 
 ---
 
-## 📤 Request
+## 📤 Example Request (Python)
 
-1. Create a REQ socket:
-   ```python
-   import zmq, json
-   ctx = zmq.Context()
-   sock = ctx.socket(zmq.REQ)
-   sock.connect("tcp://<HOST>:5555")
+```python
+import zmq, json
+
+ctx = zmq.Context()
+sock = ctx.socket(zmq.REQ)
+sock.connect("tcp://<HOST>:5555")
+
+payload = {
+  "expenses": {
+    "rent": {"Rent": 1400.0},
+    "groceries": {"weekly": 150.0}
+  }
+}
+
+sock.send_string(json.dumps(payload))
 
 ## 🖼 UML Sequence Diagram
 
